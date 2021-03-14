@@ -1,32 +1,76 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
     <router-view/>
   </div>
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+body, html, #app {
+    background-color: rgb(212, 207, 250);
+    height: 100%;
+    display: grid;
 }
 
-#nav {
-  padding: 30px;
+.container-sm {
+    width: 30%;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.container-md {
+    width:60%;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.container-sm, .container-md {
+    margin:auto;
+    padding: 80px;
+    border-radius: 60px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+
+input {
+    display: block;
+    height: 40px;
+    border-radius: 20px;
+    border:0;
+}
+
+input[type=text], input[type=password], input[type=submit] {
+    font-size: 15px;
+}
+
+input[type=text], input[type=password]  {
+    width: 100%;
+    margin-bottom: 10px;
+
+    box-sizing: border-box;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: #eee;
+    color: rgb(86, 88, 90);
+
+}
+
+input[type=submit] {
+    padding-left: 40px;
+    padding-right: 40px;
+    background-color: rgb(64, 47, 175);
+    color: snow;
+}
+
+.login-button {
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .container-sm {
+        width: 80% !important;
+        padding: 10px;
+    }
 }
 </style>
