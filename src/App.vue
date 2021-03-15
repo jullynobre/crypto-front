@@ -4,6 +4,14 @@
   </div>
 </template>
 
+<script>
+export default {
+  created() {
+    this.$store.commit('getTokenFromLocalStorage');
+  },
+};
+</script>
+
 <style>
 body, html, #app {
     background-color: rgb(212, 207, 250);
@@ -33,18 +41,18 @@ body, html, #app {
     grid-gap: 20px;
 }
 
-input {
+input, button, select {
     display: block;
     height: 40px;
     border-radius: 20px;
     border:0;
 }
 
-input[type=text], input[type=password], input[type=submit] {
+input[type=text], input[type=password], input[type=submit], input[type=number], button, select {
     font-size: 15px;
 }
 
-input[type=text], input[type=password]  {
+input[type=text], input[type=password], input[type=number], select  {
     width: 100%;
     margin-bottom: 10px;
 
@@ -56,7 +64,7 @@ input[type=text], input[type=password]  {
 
 }
 
-input[type=submit] {
+input[type=submit], button {
     padding-left: 40px;
     padding-right: 40px;
     background-color: rgb(64, 47, 175);
@@ -72,5 +80,9 @@ input[type=submit] {
         width: 80% !important;
         padding: 10px;
     }
+}
+
+*:focus {
+    outline: none;
 }
 </style>

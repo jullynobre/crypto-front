@@ -4,19 +4,21 @@
       <div>
         <h2>Valores Atuais</h2>
         <p>1 BTC</p>
-        <p>300 USD</p>
-        <p>300 BRL</p>
-        <p>300 CAD</p>
-        <p>300 EUR</p>
+        <p v-for="(curr, i) in currenciesNames" :key="curr">{{currenciesRate[i]}} {{curr}}</p>
+
       </div>
       <div>
         <h2>Atualizar</h2>
-        <form>
-          <label for="value">Currency:</label>
-          <input id="value" type="text" required />
+        <form  @submit.prevent="updateCurrency()">
+          <label for="currency">Currency:</label>
+          <select v-model="currency" name="currency" id="currency" required>
+            <option value="BRL">BRL</option>
+            <option value="CAD">CAD</option>
+            <option value="EUR">EUR</option>
+          </select>
 
           <label for="value">Novo Valor:</label>
-          <input id="value" type="text" required />
+          <input v-model="currencyValue" id="value" type="number" required />
 
           <input type="submit" value="Atualizar Valor Monetário" />
         </form>
@@ -28,6 +30,23 @@
 <script>
 export default {
   name: 'Home',
-
+  data: () => ({
+    currenciesNames: ['USD', 'BRL', 'CAD', 'EUR'],
+    currency: 'BRL',
+    currencyValue: null,
+  }),
+  created() {
+    this.$store.dispatch('getCurrencies');
+  },
+  computed: {
+    currenciesRate() {
+      return this.$store.state.currenciesRate ?? [];
+    },
+  },
+  methods: {
+    updateCurrency() {
+      this.$store.dispatch('updateCurrency', { currency: this.currency, value: this.currencyValue });
+    },
+  },
 };
 </script>
