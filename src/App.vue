@@ -76,7 +76,7 @@ input[type=submit], button {
 }
 
 @media screen and (max-width: 600px) {
-    .container-sm {
+    .container-sm, .container-md {
         width: 80% !important;
         padding: 10px;
     }
